@@ -4,6 +4,15 @@
 3.过程
 ｛
 	1.	分解torrent, 得到info
+	#include <fstream>   
+	#include "MetaInfo.hpp"
+  	MetaInfo m1=MetaInfo();
+  	std::filebuf fb;
+  	if (fb.open (torrent,std::ios::in))
+  	{
+    		std::istream is_tmp(&fb);
+    		m1.wireDecode(is_tmp);
+    	}
 	2.	check hash（metainfo）, 检查piece
 	3.	根据torrent里面信息和trcker建立连接
 			1.http GET -> peer info
